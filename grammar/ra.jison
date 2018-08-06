@@ -61,26 +61,25 @@
 
 ra_expressions
     : ra_expression EOF
-        { console.log($1); }
+        { return $1.value; }
     | ra_expression NEWLINE ra_expressions
-        { console.log($1); }
-    | EOF
+        { return $1.value; }
     ;
 
 ra_expression
-    : IDENTIFIER
-    | projection
-    | selection
+    : IDENTIFIER { var result = {id: yy.getNewId('IDENTIFIER'), value: $1 }; $$ = result }
+    | projection { var result = {id: yy.getNewId('PROJ'), value: $1 }; $$ = result }
+    | selection { var result = {id: yy.getNewId('PROJ'), value: $1 }; $$ = result }
     ;
 
 projection
     : PROJ '[' field_list ']' '(' ra_expression ')'
-        { $$ = "SELECT " + $3 + " FROM (" + $6 + ") PROJ" }
+        { $$ = "SELECT " + $3 + " FROM (" + $6.value + ") " + $6.id }
     ;
 
 selection
     : SEL '[' bool_expression ']' '(' ra_expression ')'
-        { $$ = "SELECT * FROM (" + $6 + ") A WHERE " + $3 }
+        { $$ = "SELECT * FROM (" + $6.value + ") " + $6.id + " WHERE " + $3 }
     ;
 
 field_list
