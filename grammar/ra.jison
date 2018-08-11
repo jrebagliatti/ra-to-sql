@@ -15,6 +15,7 @@
 
 "proj"                return "PROJ"
 "sel"                 return "SEL"
+"union"               return "UNION"
 "true"                return "TRUE"
 "false"               return "FALSE"
 
@@ -34,6 +35,7 @@
 "]"                   return ']'
 "|"                   return "OR"
 "&"                   return "AND"
+"<-"                  return '<-'
 ">"                   return '>'
 "<"                   return '<'
 ">="                  return '>='
@@ -48,6 +50,7 @@
 
 /* operator associations and precedence */
 
+%left UNION
 %left '+' '-'
 %left '*' '/'
 %left '^'
@@ -55,21 +58,28 @@
 %right '%'
 %left UMINUS
 
-%start ra_expressions
+%start ra_sentences
 
 %% /* language grammar */
 
-ra_expressions
-    : ra_expression EOF
+ra_sentences
+    : ra_sentence EOF
         { return $1.value; }
-    | ra_expression NEWLINE ra_expressions
+    | ra_sentence NEWLINE ra_expressions
         { return $1.value; }
     ;
 
+ra_sentence 
+    : IDENTIFIER '<-' ra_expression
+    | ra_expression
+    ;
+
 ra_expression
-    : IDENTIFIER { var result = {id: yy.getNewId('IDENTIFIER'), value: $1 }; $$ = result }
-    | projection { var result = {id: yy.getNewId('PROJ'), value: $1 }; $$ = result }
-    | selection { var result = {id: yy.getNewId('PROJ'), value: $1 }; $$ = result }
+    : '(' ra_expression ')'
+    | IDENTIFIER { $$ = {id: yy.getNewId('ID'), value: $1 }; }
+    | projection { $$ = {id: yy.getNewId('PROJ'), value: $1 }; }
+    | selection { $$ = {id: yy.getNewId('PROJ'), value: $1 }; }
+    | union { $$ = {id: yy.getNewId('UNION'), value: $1 }; }
     ;
 
 projection
@@ -80,6 +90,11 @@ projection
 selection
     : SEL '[' bool_expression ']' '(' ra_expression ')'
         { $$ = "SELECT * FROM (" + $6.value + ") " + $6.id + " WHERE " + $3 }
+    ;
+
+union
+    : ra_expression UNION ra_expression
+        { $$ = $1.value + " UNION " + $3.value }
     ;
 
 field_list
