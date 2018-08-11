@@ -41,6 +41,7 @@
 "<="                  return '<='
 "="                   return '='
 "<>"                  return '<>'
+";"                   return ';'
 
 <<EOF>>               return 'EOF'
 .                     return 'INVALID'
@@ -72,6 +73,8 @@ ra_sentences
         { $$ = new Array($1); }
     | ra_sentences NEWLINE ra_sentence
         { $1.push($3); $$ = $1; }
+    | ra_sentences ';' ra_sentence
+        { $1.push($3); $$ = $1; }
     ;
 
 ra_sentence 
@@ -79,8 +82,6 @@ ra_sentence
         { $$ = { type: 'identifier', value: { id: $1, expression: $3.value} }; }
     | ra_expression
         { $$ = { type: 'expression', value: $1 }; }
-    | NEWLINE
-        { console.log ('NEWLINE'); }
     ;
 
 ra_expression
