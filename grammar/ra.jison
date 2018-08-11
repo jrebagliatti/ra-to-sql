@@ -11,8 +11,6 @@
 \s+                   /* skip whitespace */
 \"[^"]+\"         yytext = yytext.slice(1,-1); return 'STR'
 
-"chenErd"          return 'CHEN_ERD';
-
 "proj"                return "PROJ"
 "sel"                 return "SEL"
 "union"               return "UNION"
@@ -58,24 +56,32 @@
 %right '%'
 %left UMINUS
 
-%start ra_sentences
+%start ra_program
 
 %% /* language grammar */
 
+ra_program
+    : ra_sentences EOF
+        { return $1 }
+    ;
+
 ra_sentences
-    : ra_sentence EOF
-        { return $1.value; }
-    | ra_sentence NEWLINE ra_expressions
-        { return $1.value; }
+    : ra_sentence
+        { $$ = new Array($1.value); }
+    | ra_sentences NEWLINE ra_sentence
+        { $1.push($3.value); $$ = $1; }
     ;
 
 ra_sentence 
     : IDENTIFIER '<-' ra_expression
     | ra_expression
+        { $$ = $1; }
+    | NEWLINE
+        { console.log ('NEWLINE'); }
     ;
 
 ra_expression
-    : '(' ra_expression ')'
+    : '(' ra_expression ')' { $$ = {id: yy.getNewId('GROUP'), value: $2 }; }
     | IDENTIFIER { $$ = {id: yy.getNewId('ID'), value: $1 }; }
     | projection { $$ = {id: yy.getNewId('PROJ'), value: $1 }; }
     | selection { $$ = {id: yy.getNewId('PROJ'), value: $1 }; }
