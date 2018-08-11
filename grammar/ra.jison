@@ -17,7 +17,7 @@
 "true"                return "TRUE"
 "false"               return "FALSE"
 
-[a-zA-Z][a-zA-Z0-9]*    return 'IDENTIFIER'
+[a-zA-Z][a-zA-Z0-9.]*    return 'IDENTIFIER'
 [0-9]+("."[0-9]+)?\b  return 'NUMBER'
 "*"                   return '*'
 "/"                   return '/'
@@ -83,10 +83,15 @@ ra_sentence
 
 ra_expression
     : '(' ra_expression ')' { $$ = {id: yy.getNewId('GROUP'), value: $2 }; }
-    | IDENTIFIER { $$ = {id: yy.getNewId('ID'), value: $1 }; }
+    | tableName { $$ = {id: yy.getNewId('ID'), value: $1 }; }
     | projection { $$ = {id: yy.getNewId('PROJ'), value: $1 }; }
     | selection { $$ = {id: yy.getNewId('PROJ'), value: $1 }; }
     | union { $$ = {id: yy.getNewId('UNION'), value: $1 }; }
+    ;
+
+tableName
+    : IDENTIFIER
+        { $$ = yy.getSingleTable($1); }
     ;
 
 projection

@@ -32,6 +32,10 @@ function getProjection(table, alias, fieldList){
     return "SELECT " + fieldList + " FROM (" + table + ") AS " + alias
 }
 
+function getSingleTable(tableName) {
+    return `SELECT * FROM ${tableName}`;
+}
+
 module.exports = {
     getNewId,
     getNot,
@@ -40,5 +44,6 @@ module.exports = {
     getBooleanOperation,
     getUnion,
     getSelection,
-    getProjection
+    getProjection,
+    getSingleTable
 }
