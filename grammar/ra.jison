@@ -13,7 +13,8 @@
 
 "proj"                return "PROJ"
 "sel"                 return "SEL"
-"union"               return "UNION"
+"U"                   return "UNION"
+"X"                   return "PRODUCT"
 "true"                return "TRUE"
 "false"               return "FALSE"
 
@@ -49,6 +50,7 @@
 /* operator associations and precedence */
 
 %left UNION
+%left PRODUCT
 %left '+' '-'
 %left '*' '/'
 %left '^'
@@ -87,6 +89,7 @@ ra_expression
     | projection { $$ = {id: yy.getNewId('PROJ'), value: $1 }; }
     | selection { $$ = {id: yy.getNewId('PROJ'), value: $1 }; }
     | union { $$ = {id: yy.getNewId('UNION'), value: $1 }; }
+    | product { $$ = {id: yy.getNewId('PROD'), value: $1 }; }
     ;
 
 tableName
@@ -107,6 +110,11 @@ selection
 union
     : ra_expression UNION ra_expression
         { $$ = yy.getUnion($1.value, $3.value); }
+    ;
+
+product
+    : ra_expression PRODUCT ra_expression
+        { $$ = yy.getProduct($1.value, $3.value); }
     ;
 
 field_list

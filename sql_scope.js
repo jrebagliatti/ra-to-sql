@@ -21,19 +21,23 @@ function getBooleanOperation(op1, operation, op2) {
 }
 
 function getUnion(sentence1, sentence2) {
-    return sentence1 + " UNION " + sentence2;
+    return `(SELECT * FROM ${sentence1} UNION ${sentence2}) AS ${getNewId("UNION")}`;
+}
+
+function getProduct(sentence1, sentence2) {
+    return `(SELECT * FROM ${sentence1}, ${sentence2}) AS ${getNewId("PROD")}`;
 }
 
 function getSelection(table, alias, condition){
-    return "SELECT * FROM (" + table + ") AS " + alias + " WHERE " + condition;
+    return `(SELECT * FROM ${table} WHERE ${condition}) AS ${getNewId('SEL')}`;
 }
 
 function getProjection(table, alias, fieldList){
-    return "SELECT " + fieldList + " FROM (" + table + ") AS " + alias
+    return `(SELECT ${fieldList} FROM ${table}) AS ${getNewId('PROJ')}`;
 }
 
 function getSingleTable(tableName) {
-    return `SELECT * FROM ${tableName}`;
+    return `(SELECT * FROM ${tableName}) AS ${getNewId('ID')}`;
 }
 
 module.exports = {
@@ -45,5 +49,6 @@ module.exports = {
     getUnion,
     getSelection,
     getProjection,
-    getSingleTable
+    getSingleTable,
+    getProduct
 }

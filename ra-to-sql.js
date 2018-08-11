@@ -11,7 +11,7 @@ function getSql(ra) {
         console.log(`Processing sentence ${i} of type ${element.type}`);
 
         if (element.type == "identifier") {
-            console.log(`Looking for identifier "(${element.value.id})" in following sentences`);
+            console.log(`Looking for identifier "${element.value.id}" in following sentences`);
             for(j = i + 1; j < result.length; j++){
                 var elementToReplace = result[j];
                 var valueToReplace;
@@ -24,7 +24,7 @@ function getSql(ra) {
                 }
 
                 console.log(`  Inspecting [${elementToReplace.type}] ${valueToReplace}`);
-                valueToReplace = valueToReplace.replace(`(${element.value.id})`, `(${element.value.expression})`);
+                valueToReplace = valueToReplace.replace(`(SELECT * FROM ${element.value.id})`, `(SELECT * FROM ${element.value.expression})`);
 
                 if (elementToReplace.type == "identifier") {
                     elementToReplace.value.expression = valueToReplace;
@@ -36,11 +36,11 @@ function getSql(ra) {
         }
         else {
             console.log("Expression Found. Returning");
-            return element.value.value;
+            break;
         }
     }
 
-    return element.value.value;
+    return `SELECT * FROM ${element.value.value}`;
 }
 
 module.exports = {
