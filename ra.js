@@ -111,13 +111,13 @@ case 11:
  this.$ = {id: yy.getNewId('UNION'), value: $$[$0] }; 
 break;
 case 12:
- this.$ = "SELECT " + $$[$0-4] + " FROM (" + $$[$0-1].value + ") " + $$[$0-1].id 
+ this.$ = yy.getProjection($$[$0-1].value, $$[$0-1].id, $$[$0-4]); 
 break;
 case 13:
- this.$ = "SELECT * FROM (" + $$[$0-1].value + ") " + $$[$0-1].id + " WHERE " + $$[$0-4] 
+ this.$ = yy.getSelection($$[$0-1].value, $$[$0-1].id, $$[$0-4]); 
 break;
 case 14:
- this.$ = $$[$0-2].value + " UNION " + $$[$0].value 
+ this.$ = yy.getUnion($$[$0-2].value, $$[$0].value); 
 break;
 case 15:
 this.$ = new Array($$[$0])
@@ -143,23 +143,26 @@ break;
 case 21:
 this.$ = '-' + $$[$0];
 break;
-case 22: case 40:
+case 22:
 this.$ =  '(' + $$[$0-1] + ')';
 break;
 case 23:
 this.$ = Number(yytext);
 break;
 case 25:
-this.$ = $$[$0-2] + $$[$0-1] + $$[$0];
+ this.$ = yy.getBooleanOperation($$[$0-2], $$[$0-1], $$[$0]); 
 break;
 case 33:
-this.$ = $$[$0-2] + " OR " + $$[$0]
+ this.$ = yy.getOr($$[$0-2], $$[$0]); 
 break;
 case 35:
-this.$ = $$[$0-2] + " AND " + $$[$0]
+ this.$ = yy.getAnd($$[$0-2], $$[$0]); 
 break;
 case 39:
-this.$ = "NOT " + $$[$0]
+ this.$ = yy.getNot($$[$0]); 
+break;
+case 40:
+ this.$ =  '(' + $$[$0-1] + ')'; 
 break;
 }
 },

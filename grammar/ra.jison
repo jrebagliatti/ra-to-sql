@@ -90,17 +90,17 @@ ra_expression
 
 projection
     : PROJ '[' field_list ']' '(' ra_expression ')'
-        { $$ = "SELECT " + $3 + " FROM (" + $6.value + ") " + $6.id }
+        { $$ = yy.getProjection($6.value, $6.id, $3); }
     ;
 
 selection
     : SEL '[' bool_expression ']' '(' ra_expression ')'
-        { $$ = "SELECT * FROM (" + $6.value + ") " + $6.id + " WHERE " + $3 }
+        { $$ = yy.getSelection($6.value, $6.id, $3); }
     ;
 
 union
     : ra_expression UNION ra_expression
-        { $$ = $1.value + " UNION " + $3.value }
+        { $$ = yy.getUnion($1.value, $3.value); }
     ;
 
 field_list
@@ -114,25 +114,25 @@ field_list
 
 e
     : e '+' e
-        {$$ = $1 + '+' + $3;}
+        { $$ = $1 + '+' + $3; }
     | e '-' e
-        {$$ = $1 + '-' + $3;}
+        { $$ = $1 + '-' + $3; }
     | e '*' e
-        {$$ = $1 + '*' + $3;}
+        { $$ = $1 + '*' + $3; }
     | e '/' e
-        {$$ = $1 + '/' + $3;}
+        { $$ = $1 + '/' + $3; }
     | '-' e %prec UMINUS
-        {$$ = '-' + $2;}
+        { $$ = '-' + $2;}
     | '(' e ')'
-        {$$ =  '(' + $2 + ')';}
+        { $$ =  '(' + $2 + ')'; }
     | NUMBER
-        {$$ = Number(yytext);}
+        { $$ = Number(yytext); }
     | IDENTIFIER
     ;
 
 b_e
     : e bool_operator e
-        {$$ = $1 + $2 + $3;}
+        { $$ = yy.getBooleanOperation($1, $2, $3); }
     ;
 
 bool_operator
@@ -147,13 +147,13 @@ bool_operator
 bool_expression
     : term
     | term OR factor
-        {$$ = $1 + " OR " + $3}
+        { $$ = yy.getOr($1, $3); }
     ;
 
 term
     : factor
     | factor AND factor
-        {$$ = $1 + " AND " + $3}
+        { $$ = yy.getAnd($1, $3); }
     ;
 
 factor
@@ -161,7 +161,7 @@ factor
     | FALSE
     | b_e
     | '!' factor
-        {$$ = "NOT " + $2}
+        { $$ = yy.getNot($2); }
     | '(' bool_expression ')'
-        {$$ =  '(' + $2 + ')';}
+        { $$ =  '(' + $2 + ')'; }
     ;

@@ -1,6 +1,6 @@
 var parser = require('./ra').parser;
 
-parser.yy = require('./scope');
+parser.yy = require('./sql_scope');
 
 function getSql(ra) {
     // TODO: Prepare input, by removing consecutive newlines
