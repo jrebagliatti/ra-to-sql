@@ -80,6 +80,8 @@ ra_sentences
 ra_sentence 
     : IDENTIFIER '<-' ra_expression
         { $$ = { type: 'identifier', value: { id: $1, expression: $3.value} }; }
+    | IDENTIFIER '(' field_list ')' '<-' ra_expression
+        { $$ = { type: 'identifier', value: { id: $1, expression: $6.value, fields: $3 } }; }
     | ra_expression
         { $$ = { type: 'expression', value: $1 }; }
     ;

@@ -12,25 +12,28 @@ function getSql(ra) {
 
         if (element.type == "identifier") {
             console.log(`Looking for identifier "${element.value.id}" in following sentences`);
+            
+            var fieldList = element.fieldList || "*";
+
             for(j = i + 1; j < result.length; j++){
                 var elementToReplace = result[j];
-                var valueToReplace;
+                var valueToBeReplaced;
 
                 if (elementToReplace.type == "identifier") {
-                    valueToReplace = elementToReplace.value.expression;
+                    valueToBeReplaced = elementToReplace.value.expression;
                 }
                 else {
-                    valueToReplace = elementToReplace.value.value;
+                    valueToBeReplaced = elementToReplace.value.value;
                 }
 
-                console.log(`  Inspecting [${elementToReplace.type}] ${valueToReplace}`);
-                valueToReplace = valueToReplace.replace(`(SELECT * FROM ${element.value.id})`, `(SELECT * FROM ${element.value.expression})`);
+                console.log(`  Inspecting [${elementToReplace.type}] ${valueToBeReplaced}`);
+                valueToBeReplaced = valueToBeReplaced.replace(`(SELECT * FROM ${element.value.id})`, `(SELECT * FROM ${element.value.expression})`);
 
                 if (elementToReplace.type == "identifier") {
-                    elementToReplace.value.expression = valueToReplace;
+                    elementToReplace.value.expression = valueToBeReplaced;
                 }
                 else {
-                    elementToReplace.value.value = valueToReplace;
+                    elementToReplace.value.value = valueToBeReplaced;
                 }
             }
         }
