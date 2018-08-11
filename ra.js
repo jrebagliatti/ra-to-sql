@@ -87,13 +87,16 @@ case 1:
  return $$[$0-1] 
 break;
 case 2:
- this.$ = new Array($$[$0].value); 
+ this.$ = new Array($$[$0]); 
 break;
 case 3:
- $$[$0-2].push($$[$0].value); this.$ = $$[$0-2]; 
+ $$[$0-2].push($$[$0]); this.$ = $$[$0-2]; 
+break;
+case 4:
+ this.$ = { type: 'identifier', value: { id: $$[$0-2], expression: $$[$0].value} }; 
 break;
 case 5:
- this.$ = $$[$0]; 
+ this.$ = { type: 'expression', value: $$[$0] }; 
 break;
 case 6:
  console.log ('NEWLINE'); 
@@ -129,25 +132,25 @@ case 16:
         
 break;
 case 17:
-this.$ = $$[$0-2] + '+' + $$[$0];
+ this.$ = $$[$0-2] + '+' + $$[$0]; 
 break;
 case 18:
-this.$ = $$[$0-2] + '-' + $$[$0];
+ this.$ = $$[$0-2] + '-' + $$[$0]; 
 break;
 case 19:
-this.$ = $$[$0-2] + '*' + $$[$0];
+ this.$ = $$[$0-2] + '*' + $$[$0]; 
 break;
 case 20:
-this.$ = $$[$0-2] + '/' + $$[$0];
+ this.$ = $$[$0-2] + '/' + $$[$0]; 
 break;
 case 21:
-this.$ = '-' + $$[$0];
+ this.$ = '-' + $$[$0];
 break;
-case 22:
-this.$ =  '(' + $$[$0-1] + ')';
+case 22: case 40:
+ this.$ =  '(' + $$[$0-1] + ')'; 
 break;
 case 23:
-this.$ = Number(yytext);
+ this.$ = Number(yytext); 
 break;
 case 25:
  this.$ = yy.getBooleanOperation($$[$0-2], $$[$0-1], $$[$0]); 
@@ -160,9 +163,6 @@ case 35:
 break;
 case 39:
  this.$ = yy.getNot($$[$0]); 
-break;
-case 40:
- this.$ =  '(' + $$[$0-1] + ')'; 
 break;
 }
 },

@@ -67,15 +67,16 @@ ra_program
 
 ra_sentences
     : ra_sentence
-        { $$ = new Array($1.value); }
+        { $$ = new Array($1); }
     | ra_sentences NEWLINE ra_sentence
-        { $1.push($3.value); $$ = $1; }
+        { $1.push($3); $$ = $1; }
     ;
 
 ra_sentence 
     : IDENTIFIER '<-' ra_expression
+        { $$ = { type: 'identifier', value: { id: $1, expression: $3.value} }; }
     | ra_expression
-        { $$ = $1; }
+        { $$ = { type: 'expression', value: $1 }; }
     | NEWLINE
         { console.log ('NEWLINE'); }
     ;

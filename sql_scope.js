@@ -25,11 +25,11 @@ function getUnion(sentence1, sentence2) {
 }
 
 function getSelection(table, alias, condition){
-    return "SELECT * FROM (" + table + ") " + alias + " WHERE " + condition;
+    return "SELECT * FROM (" + table + ") AS " + alias + " WHERE " + condition;
 }
 
 function getProjection(table, alias, fieldList){
-    return "SELECT " + fieldList + " FROM (" + table + ") " + alias
+    return "SELECT " + fieldList + " FROM (" + table + ") AS " + alias
 }
 
 module.exports = {
