@@ -27,7 +27,7 @@ function getSql(ra) {
                 }
 
                 console.log(`  Inspecting [${elementToReplace.type}] ${valueToBeReplaced}`);
-                valueToBeReplaced = valueToBeReplaced.replace(`(SELECT * FROM ${element.value.id})`, `(SELECT * FROM ${element.value.expression})`);
+                valueToBeReplaced = valueToBeReplaced.replace(`(SELECT DISTINCT * FROM ${element.value.id})`, `(SELECT * FROM ${element.value.expression})`);
 
                 if (elementToReplace.type == "identifier") {
                     elementToReplace.value.expression = valueToBeReplaced;
