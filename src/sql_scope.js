@@ -21,23 +21,23 @@ function getBooleanOperation(op1, operation, op2) {
 }
 
 function getUnion(sentence1, sentence2) {
-    return `(SELECT * FROM ${sentence1} UNION ${sentence2}) AS ${getNewId("UNION")}`;
+    return `(SELECT DISTINCT * FROM ${sentence1} UNION ${sentence2}) AS ${getNewId("UNION")}`;
 }
 
 function getProduct(sentence1, sentence2) {
-    return `(SELECT * FROM ${sentence1}, ${sentence2}) AS ${getNewId("PROD")}`;
+    return `(SELECT DISTINCT * FROM ${sentence1}, ${sentence2}) AS ${getNewId("PROD")}`;
 }
 
 function getSelection(table, alias, condition){
-    return `(SELECT * FROM ${table} WHERE ${condition}) AS ${getNewId('SEL')}`;
+    return `(SELECT DISTINCT * FROM ${table} WHERE ${condition}) AS ${getNewId('SEL')}`;
 }
 
 function getProjection(table, alias, fieldList){
-    return `(SELECT ${fieldList} FROM ${table}) AS ${getNewId('PROJ')}`;
+    return `(SELECT DISTINCT ${fieldList} FROM ${table}) AS ${getNewId('PROJ')}`;
 }
 
 function getSingleTable(tableName) {
-    return `(SELECT * FROM ${tableName}) AS ${getNewId('ID')}`;
+    return `(SELECT DISTINCT * FROM ${tableName}) AS ${getNewId('ID')}`;
 }
 
 module.exports = {
