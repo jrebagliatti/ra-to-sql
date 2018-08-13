@@ -1,0 +1,13 @@
+{
+  "name": "ra-to-sql",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "build": "webpack"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0"
+  }
+}
