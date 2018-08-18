@@ -1,4 +1,4 @@
-var parser = require('./ra-to-sql');
+var parser = require('./src/ra-to-sql');
 var fs = require('fs');
 
 var args = process.argv.slice(2);

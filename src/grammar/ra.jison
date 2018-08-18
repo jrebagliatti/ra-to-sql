@@ -12,9 +12,20 @@
 \"[^"]+\"         yytext = yytext.slice(1,-1); return 'STR'
 
 "proj"                return "PROJ"
+"PROJ"                return "PROJ"
+"Proj"                return "PROJ"
 "sel"                 return "SEL"
+"Sel"                 return "SEL"
+"SEL"                 return "SEL"
 "U"                   return "UNION"
+"u"                   return "UNION"
+"∪"                   return "UNION"
 "X"                   return "PRODUCT"
+"x"                   return "PRODUCT"
+"INT"                 return "INTERSECTION"
+"int"                 return "INTERSECTION"
+"Int"                 return "INTERSECTION"
+"∩"                   return "INTERSECTION"
 "true"                return "TRUE"
 "false"               return "FALSE"
 
@@ -49,8 +60,9 @@
 /lex
 
 /* operator associations and precedence */
-
+/* TODO: Define subtraction precedence */
 %left UNION
+%left INTERSECTION
 %left PRODUCT
 %left '+' '-'
 %left '*' '/'
@@ -92,7 +104,9 @@ ra_expression
     | projection { $$ = {id: yy.getNewId('PROJ'), value: $1 }; }
     | selection { $$ = {id: yy.getNewId('PROJ'), value: $1 }; }
     | union { $$ = {id: yy.getNewId('UNION'), value: $1 }; }
+    | intersection { $$ = {id: yy.getNewId('UNION'), value: $1 }; }
     | product { $$ = {id: yy.getNewId('PROD'), value: $1 }; }
+    | subtraction { $$ = {id: yy.getNewId('SUBS'), value: $1 }; }
     ;
 
 tableName
@@ -115,9 +129,19 @@ union
         { $$ = yy.getUnion($1.value, $3.value); }
     ;
 
+intersection
+    : ra_expression INTERSECTION ra_expression
+        { $$ = yy.getIntersection($1.value, $3.value); }
+    ;
+
 product
     : ra_expression PRODUCT ra_expression
         { $$ = yy.getProduct($1.value, $3.value); }
+    ;
+
+subtraction
+    : ra_expression '-' ra_expression
+        { $$ = yy.getSubtraction($1.value, $3.value); }
     ;
 
 field_list

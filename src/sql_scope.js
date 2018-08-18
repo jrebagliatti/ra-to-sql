@@ -24,6 +24,14 @@ function getUnion(sentence1, sentence2) {
     return `(SELECT DISTINCT * FROM ${sentence1} UNION ${sentence2}) AS ${getNewId("UNION")}`;
 }
 
+function getIntersection(sentence1, sentence2) {
+    return `(SELECT DISTINCT * FROM ${sentence1} INTESECT ${sentence2}) AS ${getNewId("INTERSECT")}`;
+}
+
+function getSubtraction(sentence1, sentence2) {
+    return `(SELECT DISTINCT * FROM ${sentence1} EXCEPT ${sentence2}) AS ${getNewId("SUB")}`;
+}
+
 function getProduct(sentence1, sentence2) {
     return `(SELECT DISTINCT * FROM ${sentence1}, ${sentence2}) AS ${getNewId("PROD")}`;
 }
@@ -50,5 +58,7 @@ module.exports = {
     getSelection,
     getProjection,
     getSingleTable,
-    getProduct
+    getProduct,
+    getIntersection,
+    getSubtraction
 }
