@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "jison": "jison .\\src\\grammar\\ra.jison -o .\\src\\ra.js",
-    "build": "jison .\\src\\grammar\\ra.jison -o .\\src\\ra.js && webpack"
+    "build": "jison .\\src\\grammar\\ra.jison -o .\\src\\ra.js && webpack",
+    "test": "mocha"
   },
   "dependencies": {},
   "devDependencies": {
     "jison": "^0.4.18",
+    "mocha": "^5.2.0",
     "webpack": "^4.16.5",
     "webpack-cli": "^3.1.0"
   }
