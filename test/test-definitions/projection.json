@@ -1,0 +1,13 @@
+{
+    "tables": [
+        {
+            "tableName": "Person",
+            "definitionFile": "Person.csv"
+        }
+    ],
+    "expression": "Proj[PersonGender](Person)",
+    "expectedResults":[
+        {"PersonGender": "M"},
+        {"PersonGender": "F"}
+    ]
+}

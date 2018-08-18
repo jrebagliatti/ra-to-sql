@@ -9,8 +9,10 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "csv-parse": "^2.5.0",
     "jison": "^0.4.18",
     "mocha": "^5.2.0",
+    "sqlite3": "^4.0.2",
     "webpack": "^4.16.5",
     "webpack-cli": "^3.1.0"
   }
