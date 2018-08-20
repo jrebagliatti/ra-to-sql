@@ -1,0 +1,19 @@
+{
+    "tables": [
+        {
+            "tableName": "Person",
+            "definitionFile": "Person.csv"
+        },
+        {
+            "tableName": "Gender",
+            "definitionFile": "Gender.csv"
+        }
+    ],
+    "expression": "Proj[PersonName](Sel[PersonGender='M'](Person)) U Proj[PersonName](Sel[PersonGender=\"F\"](Person))",
+    "expectedResults":[
+        { "PersonName": "John" },
+        { "PersonName": "Mary" },
+        { "PersonName": "Max" },
+        { "PersonName": "Sophie" }
+    ]
+}
