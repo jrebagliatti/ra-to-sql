@@ -41,6 +41,10 @@ describe('RA expressions', function() {
                 });
             
                 db.all(sql.getSql(testDefinition.expression), function(err, rows) {
+                    if(err) {
+                        throw err;
+                    }
+                    
                     assert.deepEqual(rows, testDefinition.expectedResults);
                     done();
                 });
