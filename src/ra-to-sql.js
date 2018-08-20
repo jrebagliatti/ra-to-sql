@@ -12,8 +12,12 @@ function getSql(ra) {
 
         if (element.type == "identifier") {
             console.log(`Looking for identifier "${element.value.id}" in following sentences`);
-            
-            var fieldList = element.fieldList || "*";
+
+            var fieldList = "SELECT DISTINCT *";
+
+            if (element.value.fields != null) {
+                fieldList = `SELECT ${element.value.fields.map(x => `null as ${x}`).join(',')} WHERE 1=2 UNION ${fieldList}`;
+            }
 
             for(j = i + 1; j < result.length; j++){
                 var elementToReplace = result[j];
@@ -26,8 +30,8 @@ function getSql(ra) {
                     valueToBeReplaced = elementToReplace.value.value;
                 }
 
-                console.log(`  Inspecting [${elementToReplace.type}] ${valueToBeReplaced}`);
-                valueToBeReplaced = valueToBeReplaced.replace(`(SELECT DISTINCT * FROM ${element.value.id})`, `(SELECT * FROM ${element.value.expression})`);
+                console.log(`  Inspecting [${elementToReplace.type}] ${valueToBeReplaced} ${fieldList}`);
+                valueToBeReplaced = valueToBeReplaced.replace(`(SELECT DISTINCT * FROM ${element.value.id})`, `(${fieldList} FROM ${element.value.expression})`);
 
                 if (elementToReplace.type == "identifier") {
                     elementToReplace.value.expression = valueToBeReplaced;

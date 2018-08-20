@@ -1,0 +1,13 @@
+{
+    "tables": [
+        {
+            "tableName": "Gender",
+            "definitionFile": "Gender.csv"
+        }
+    ],
+    "expression": "A(A,B)<-Gender;A",
+    "expectedResults":[
+        {"A": "F", "B": "Female"},
+        {"A": "M", "B": "Male"}
+    ]
+}
