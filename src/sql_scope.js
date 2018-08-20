@@ -21,15 +21,15 @@ function getBooleanOperation(op1, operation, op2) {
 }
 
 function getUnion(sentence1, sentence2) {
-    return `(SELECT DISTINCT * FROM ${sentence1} UNION ${sentence2}) AS ${getNewId("UNION")}`;
+    return `(SELECT DISTINCT * FROM ${sentence1} UNION SELECT DISTINCT * FROM ${sentence2}) AS ${getNewId("UNION")}`;
 }
 
 function getIntersection(sentence1, sentence2) {
-    return `(SELECT DISTINCT * FROM ${sentence1} INTESECT ${sentence2}) AS ${getNewId("INTERSECT")}`;
+    return `(SELECT DISTINCT * FROM ${sentence1} INTESECT SELECT DISTINCT * FROM ${sentence2}) AS ${getNewId("INTERSECT")}`;
 }
 
 function getSubtraction(sentence1, sentence2) {
-    return `(SELECT DISTINCT * FROM ${sentence1} EXCEPT ${sentence2}) AS ${getNewId("SUB")}`;
+    return `(SELECT DISTINCT * FROM ${sentence1} EXCEPT SELECT DISTINCT * FROM ${sentence2}) AS ${getNewId("SUB")}`;
 }
 
 function getProduct(sentence1, sentence2) {

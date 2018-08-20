@@ -10,6 +10,7 @@
 (\r\n|\r|\n)                   return 'NEWLINE';
 \s+                   /* skip whitespace */
 \"[^"]+\"         yytext = yytext.slice(1,-1); return 'STR'
+\'[^']+\'           yytext = yytext.slice(1,-1); return 'STR'
 
 "proj"                return "PROJ"
 "PROJ"                return "PROJ"
@@ -99,7 +100,7 @@ ra_sentence
     ;
 
 ra_expression
-    : '(' ra_expression ')' { $$ = {id: yy.getNewId('GROUP'), value: $2 }; }
+    : '(' ra_expression ')' { $$ = {id: yy.getNewId('GROUP'), value: $2.value }; }
     | tableName { $$ = {id: yy.getNewId('ID'), value: $1 }; }
     | projection { $$ = {id: yy.getNewId('PROJ'), value: $1 }; }
     | selection { $$ = {id: yy.getNewId('PROJ'), value: $1 }; }
@@ -169,6 +170,8 @@ e
     | NUMBER
         { $$ = Number(yytext); }
     | IDENTIFIER
+    | STR
+        { $$ = "'" + $1 + "'" }
     ;
 
 b_e
