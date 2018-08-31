@@ -47,7 +47,7 @@ function getSql(ra) {
         }
     }
 
-    return `SELECT * FROM ${element.value.value}`;
+    return `SELECT DISTINCT * FROM ${element.value.value}`;
 }
 
 module.exports = {

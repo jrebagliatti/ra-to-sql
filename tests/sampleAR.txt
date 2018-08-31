@@ -1,3 +1,0 @@
-Test<-proj[field1, field2](Table1)
-proj[field1+(5*6), field2/field3](proj[field3,field4](Test))
-sel[a=2 & (b>c | x=2*c)](Table3)
