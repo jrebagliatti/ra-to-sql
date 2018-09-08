@@ -21,6 +21,8 @@
 "U"                   return "UNION"
 "u"                   return "UNION"
 "∪"                   return "UNION"
+"|X|"                 return "NATURAL"
+"|x|"                 return "NATURAL"
 "X"                   return "PRODUCT"
 "x"                   return "PRODUCT"
 "INT"                 return "INTERSECTION"
@@ -74,6 +76,7 @@
 %left UNION
 %left INTERSECTION
 %left PRODUCT
+%left NATURAL
 %left '+' '-'
 %left '*' '/'
 %left '^'
@@ -116,6 +119,7 @@ ra_expression
     | union { $$ = {id: yy.getNewId('UNION'), value: $1 }; }
     | intersection { $$ = {id: yy.getNewId('UNION'), value: $1 }; }
     | product { $$ = {id: yy.getNewId('PROD'), value: $1 }; }
+    | natural { $$ = {id: yy.getNewId('PROD'), value: $1 }; }
     | subtraction { $$ = {id: yy.getNewId('SUBS'), value: $1 }; }
     | rename { $$ = {id: yy.getNewId('REN'), value: $1 }; }
     ;
@@ -153,6 +157,11 @@ intersection
 product
     : ra_expression PRODUCT ra_expression
         { $$ = yy.getProduct($1.value, $3.value); }
+    ;
+
+natural
+    : ra_expression NATURAL ra_expression
+        { $$ = yy.getNaturalJoin($1.value, $3.value); }
     ;
 
 subtraction

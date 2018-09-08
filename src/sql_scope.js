@@ -36,6 +36,10 @@ function getProduct(sentence1, sentence2) {
     return `(SELECT DISTINCT * FROM ${sentence1}, ${sentence2}) AS ${getNewId("PROD")}`;
 }
 
+function getNaturalJoin(sentence1, sentence2) {
+    return `(SELECT DISTINCT * FROM ${sentence1} NATURAL JOIN ${sentence2}) AS ${getNewId("NAT")}`;
+}
+
 function getSelection(table, alias, condition){
     return `(SELECT DISTINCT * FROM ${table} WHERE ${condition}) AS ${getNewId('SEL')}`;
 }
@@ -65,5 +69,6 @@ module.exports = {
     getProduct,
     getIntersection,
     getSubtraction,
-    getRename
+    getRename,
+    getNaturalJoin
 }
