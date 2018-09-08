@@ -29,6 +29,15 @@
 "∩"                   return "INTERSECTION"
 "true"                return "TRUE"
 "false"               return "FALSE"
+"Ren"                 return "REN"
+"ren"                 return "REN"
+"REN"                 return "REN"
+"OR"                  return 'OR'
+"or"                  return 'OR'
+"Or"                  return 'OR'
+"AND"                 return 'AND'
+"and"                 return 'AND'
+"And"                 return 'AND'
 
 [a-zA-Z][a-zA-Z0-9.]*    return 'IDENTIFIER'
 [0-9]+("."[0-9]+)?\b  return 'NUMBER'
@@ -108,6 +117,7 @@ ra_expression
     | intersection { $$ = {id: yy.getNewId('UNION'), value: $1 }; }
     | product { $$ = {id: yy.getNewId('PROD'), value: $1 }; }
     | subtraction { $$ = {id: yy.getNewId('SUBS'), value: $1 }; }
+    | rename { $$ = {id: yy.getNewId('REN'), value: $1 }; }
     ;
 
 tableName
@@ -118,6 +128,11 @@ tableName
 projection
     : PROJ '[' field_list ']' '(' ra_expression ')'
         { $$ = yy.getProjection($6.value, $6.id, $3); }
+    ;
+
+rename
+    : REN '[' field_list ']' '(' ra_expression ')'
+        { $$ = yy.getRename($6.value, $6.id, $3); }
     ;
 
 selection

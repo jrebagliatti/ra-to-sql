@@ -44,6 +44,10 @@ function getProjection(table, alias, fieldList){
     return `(SELECT DISTINCT ${fieldList} FROM ${table}) AS ${getNewId('PROJ')}`;
 }
 
+function getRename(table, alias, fieldList){
+    return `(SELECT DISTINCT ${fieldList.map(x => `null as ${x}`).join(',')} WHERE 1=2 UNION SELECT DISTINCT * FROM ${table}) AS ${getNewId('REN')}`;
+}
+
 function getSingleTable(tableName) {
     return `(SELECT DISTINCT * FROM ${tableName}) AS ${getNewId('ID')}`;
 }
@@ -60,5 +64,6 @@ module.exports = {
     getSingleTable,
     getProduct,
     getIntersection,
-    getSubtraction
+    getSubtraction,
+    getRename
 }

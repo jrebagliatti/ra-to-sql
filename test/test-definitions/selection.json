@@ -1,0 +1,13 @@
+{
+    "tables": [
+        {
+            "tableName": "Person",
+            "definitionFile": "Person.csv"
+        }
+    ],
+    "expression": "Sel[PersonName='John' OR PersonName='Max'](Person)",
+    "expectedResults":[
+        {"PersonId": "1", "PersonName": "John", "PersonGender": "M"},
+        {"PersonId": "2", "PersonName": "Max", "PersonGender": "M"}
+    ]
+}
