@@ -5,9 +5,11 @@
             "definitionFile": "Number.csv"
         }
     ],
-    "expression": "Sel[Number>2 AND Number<5](Number)",
+    "expression": "Sel[Number>2 AND Number<5 OR Number >= 19 ](Number)",
     "expectedResults":[
         {"Number": 3},
-        {"Number": 4}
+        {"Number": 4},
+        {"Number": 19},
+        {"Number": 20}
     ]
 }

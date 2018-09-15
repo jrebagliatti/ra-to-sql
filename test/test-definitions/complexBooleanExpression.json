@@ -1,0 +1,15 @@
+{
+    "tables": [
+        {
+            "tableName": "Number",
+            "definitionFile": "Number.csv"
+        }
+    ],
+    "expression": "Sel[Number > 14 AND !(Number = 15 OR Number = 18)](Number)",
+    "expectedResults":[
+        {"Number": 16},
+        {"Number": 17},
+        {"Number": 19},
+        {"Number": 20}
+    ]
+}
