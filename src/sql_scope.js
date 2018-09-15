@@ -8,12 +8,8 @@ function getNot(input) {
     return "NOT " + input;
 }
 
-function getAnd(op1, op2) {
-    return op1 + " AND " + op2;
-}
-
-function getOr(op1, op2) {
-    return op1 + " OR " + op2;
+function getBooleanExpression(op1, b_e, op2) {
+    return `${op1} ${b_e} ${op2}`;
 }
 
 function getBooleanOperation(op1, operation, op2) {
@@ -59,8 +55,7 @@ function getSingleTable(tableName) {
 module.exports = {
     getNewId,
     getNot,
-    getAnd,
-    getOr,
+    getBooleanExpression,
     getBooleanOperation,
     getUnion,
     getSelection,

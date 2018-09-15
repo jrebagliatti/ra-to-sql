@@ -57,13 +57,13 @@
 "]"                   return ']'
 "|"                   return "OR"
 "&"                   return "AND"
+"<>"                  return '<>'
 "<-"                  return '<-'
+"<="                  return '<='
+">="                  return '>='
 ">"                   return '>'
 "<"                   return '<'
-">="                  return '>='
-"<="                  return '<='
 "="                   return '='
-"<>"                  return '<>'
 ";"                   return ';'
 
 <<EOF>>               return 'EOF'
@@ -77,6 +77,8 @@
 %left INTERSECTION
 %left PRODUCT
 %left NATURAL
+%left OR
+%left AND
 %left '+' '-'
 %left '*' '/'
 %left '^'
@@ -213,9 +215,14 @@ bool_operator
     ;
 
 bool_expression
-    : term
-    | term OR factor
-        { $$ = yy.getOr($1, $3); }
+    : factor
+    | factor bool_op bool_expression
+        { $$ = yy.getBooleanExpression($1, $2, $3); }
+    ;
+
+bool_op 
+    : OR
+    | AND
     ;
 
 term
