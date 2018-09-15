@@ -1,0 +1,13 @@
+{
+    "tables": [
+        {
+            "tableName": "Number",
+            "definitionFile": "Number.csv"
+        }
+    ],
+    "expression": "Sel[Number>2 AND Number<5](Number)",
+    "expectedResults":[
+        {"Number": 3},
+        {"Number": 4}
+    ]
+}

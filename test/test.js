@@ -20,19 +20,17 @@ describe('RA expressions', function() {
                     console.log(`Processing table ${tableDefinition.definitionFile}`);
 
                     var records = getDataFromCsv(table);
-                    var stmt;
-                    for(i = 0; i < records.length; i++){
-                        var row = records[i];
-                
-                        if(i == 0){
-                            var statement = `CREATE TABLE ${table} (${row.map(x=>`${x} TEXT`).join(',')})`;
-                            db.run(statement);
-            
-                            statement = `INSERT INTO ${table} VALUES (${row.map(x=>'?').join(',')})`;
-                            stmt = db.prepare(statement);
-                        } else {
-                            stmt.run(row);
-                        }
+
+                    // Header
+                    var statement = `CREATE TABLE ${table} (${records.header.map(x=>`${x.columnName} ${x.dataType}`).join(',')})`;
+                    db.run(statement);
+
+                    statement = `INSERT INTO ${table} VALUES (${records.header.map(x=>'?').join(',')})`;
+
+                    var stmt = db.prepare(statement);
+                    for(i = 0; i < records.rows.length; i++){
+                        var row = records.rows[i];
+                        stmt.run(row);
                     }    
             
                     if(stmt != null){
@@ -59,5 +57,32 @@ describe('RA expressions', function() {
 function getDataFromCsv(csvFileName){
     var content = fs.readFileSync(`./test/table-definitions/${csvFileName}.csv`, 'UTF8');
 
-    return csvParser(content);
+    var csvContent = csvParser(content);
+
+    // Infer the data type of the columns
+    var headerRow = csvContent[0];
+    var rows = csvContent.slice(1);
+    var header = [];
+
+    for(var i = 0; i < headerRow.length; i++) {
+        var columnName = headerRow[i];
+        var dataType = "TEXT";
+
+        var areAllNumbers = !rows.some(x => {
+            // Check if some row cannot be casted as number
+            if (x[i] == "") {
+                return false;
+            }
+
+            return isNaN(x[i]);
+        });
+
+        if(areAllNumbers) {
+            dataType = "INT";
+        }
+
+        header.push({columnName, dataType});
+    }
+
+    return {header, rows}
 }
