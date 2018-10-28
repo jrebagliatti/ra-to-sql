@@ -1,6 +1,6 @@
 {
   "name": "ra-to-sql",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "main": "src/ra-to-sql.js",
   "scripts": {
     "jison": "jison .\\src\\grammar\\ra.jison -o .\\src\\ra.js",
@@ -24,7 +24,12 @@
     "type": "git",
     "url": "git+https://github.com/jrebagliatti/ra-to-sql.git"
   },
-  "keywords": ["relational algebra", "sql", "parser", "converter"],
+  "keywords": [
+    "relational algebra",
+    "sql",
+    "parser",
+    "converter"
+  ],
   "author": "Javier Rebagliatti <jrebagliatti@gmail.com>",
   "license": "ISC",
   "bugs": {
