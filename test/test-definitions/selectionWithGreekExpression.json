@@ -1,0 +1,13 @@
+{
+    "tables": [
+        {
+            "tableName": "Person",
+            "definitionFile": "Person.csv"
+        }
+    ],
+    "expression": "σ[PersonName='John' OR PersonName='Max' AND 1<>2](Person)",
+    "expectedResults":[
+        {"PersonId": "1", "PersonName": "John", "PersonGender": "M"},
+        {"PersonId": "2", "PersonName": "Max", "PersonGender": "M"}
+    ]
+}

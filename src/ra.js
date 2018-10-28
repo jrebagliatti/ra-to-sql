@@ -690,112 +690,122 @@ case 7:return "PROJ"
 break;
 case 8:return "PROJ"
 break;
-case 9:return "SEL"
+case 9:return "PROJ"
 break;
 case 10:return "SEL"
 break;
 case 11:return "SEL"
 break;
-case 12:return "UNION"
+case 12:return "SEL"
 break;
-case 13:return "UNION"
+case 13:return "SEL"
 break;
 case 14:return "UNION"
 break;
-case 15:return "NATURAL"
+case 15:return "UNION"
 break;
-case 16:return "NATURAL"
+case 16:return "UNION"
 break;
-case 17:return "PRODUCT"
+case 17:return "NATURAL"
 break;
-case 18:return "PRODUCT"
+case 18:return "NATURAL"
 break;
-case 19:return "INTERSECTION"
+case 19:return "NATURAL"
 break;
-case 20:return "INTERSECTION"
+case 20:return "PRODUCT"
 break;
-case 21:return "INTERSECTION"
+case 21:return "PRODUCT"
 break;
-case 22:return "INTERSECTION"
+case 22:return "PRODUCT"
 break;
-case 23:return "TRUE"
+case 23:return "INTERSECTION"
 break;
-case 24:return "FALSE"
+case 24:return "INTERSECTION"
 break;
-case 25:return "REN"
+case 25:return "INTERSECTION"
 break;
-case 26:return "REN"
+case 26:return "INTERSECTION"
 break;
-case 27:return "REN"
+case 27:return "TRUE"
 break;
-case 28:return 52
+case 28:return "FALSE"
 break;
-case 29:return 52
+case 29:return "REN"
 break;
-case 30:return 52
+case 30:return "REN"
 break;
-case 31:return 53
+case 31:return "REN"
 break;
-case 32:return 53
+case 32:return "REN"
 break;
-case 33:return 53
+case 33:return 52
 break;
-case 34:return 9
+case 34:return 52
 break;
-case 35:return 40
+case 35:return 52
 break;
-case 36:return 38
+case 36:return 53
 break;
-case 37:return 39
+case 37:return 53
 break;
-case 38:return 34
+case 38:return 53
 break;
-case 39:return 37
+case 39:return 9
 break;
-case 40:return '^'
+case 40:return 40
 break;
-case 41:return 57
+case 41:return 38
 break;
-case 42:return '%'
+case 42:return 39
 break;
-case 43:return 12
+case 43:return 34
 break;
-case 44:return 14
+case 44:return 37
 break;
-case 45:return "COMMA"
+case 45:return '^'
 break;
-case 46:return 25
+case 46:return 57
 break;
-case 47:return 26
+case 47:return '%'
 break;
-case 48:return "OR"
+case 48:return 12
 break;
-case 49:return "AND"
+case 49:return 14
 break;
-case 50:return 49
+case 50:return "COMMA"
 break;
-case 51:return 10
+case 51:return 25
 break;
-case 52:return 46
+case 52:return 26
 break;
-case 53:return 47
+case 53:return "OR"
 break;
-case 54:return 44
+case 54:return "AND"
 break;
-case 55:return 45
+case 55:return 49
 break;
-case 56:return 48
+case 56:return 10
 break;
-case 57:return 8
+case 57:return 46
 break;
-case 58:return 5
+case 58:return 47
 break;
-case 59:return 'INVALID'
+case 59:return 44
+break;
+case 60:return 45
+break;
+case 61:return 48
+break;
+case 62:return 8
+break;
+case 63:return 5
+break;
+case 64:return 'INVALID'
 break;
 }
 },
-rules: [/^(?:#[^\n]*)/,/^(?:%[^\n]*)/,/^(?:(\r\n|\r|\n))/,/^(?:\s+)/,/^(?:"[^"]+")/,/^(?:'[^']+')/,/^(?:proj\b)/,/^(?:PROJ\b)/,/^(?:Proj\b)/,/^(?:sel\b)/,/^(?:Sel\b)/,/^(?:SEL\b)/,/^(?:U\b)/,/^(?:u\b)/,/^(?:∪)/,/^(?:\|X\|)/,/^(?:\|x\|)/,/^(?:X\b)/,/^(?:x\b)/,/^(?:INT\b)/,/^(?:int\b)/,/^(?:Int\b)/,/^(?:∩)/,/^(?:true\b)/,/^(?:false\b)/,/^(?:Ren\b)/,/^(?:ren\b)/,/^(?:REN\b)/,/^(?:OR\b)/,/^(?:or\b)/,/^(?:Or\b)/,/^(?:AND\b)/,/^(?:and\b)/,/^(?:And\b)/,/^(?:[a-zA-Z][a-zA-Z0-9.]*)/,/^(?:[0-9]+(\.[0-9]+)?\b)/,/^(?:\*)/,/^(?:\/)/,/^(?:-)/,/^(?:\+)/,/^(?:\^)/,/^(?:!)/,/^(?:%)/,/^(?:\()/,/^(?:\))/,/^(?:,)/,/^(?:\[)/,/^(?:\])/,/^(?:\|)/,/^(?:&)/,/^(?:<>)/,/^(?:<-)/,/^(?:<=)/,/^(?:>=)/,/^(?:>)/,/^(?:<)/,/^(?:=)/,/^(?:;)/,/^(?:$)/,/^(?:.)/],
-conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59],"inclusive":true}}
+rules: [/^(?:#[^\n]*)/,/^(?:%[^\n]*)/,/^(?:(\r\n|\r|\n))/,/^(?:\s+)/,/^(?:"[^"]+")/,/^(?:'[^']+')/,/^(?:proj\b)/,/^(?:PROJ\b)/,/^(?:Proj\b)/,/^(?:π)/,/^(?:sel\b)/,/^(?:Sel\b)/,/^(?:SEL\b)/,/^(?:σ)/,/^(?:U\b)/,/^(?:u\b)/,/^(?:∪)/,/^(?:\|X\|)/,/^(?:\|x\|)/,/^(?:⋈)/,/^(?:X\b)/,/^(?:x\b)/,/^(?:×)/,/^(?:INT\b)/,/^(?:int\b)/,/^(?:Int\b)/,/^(?:∩)/,/^(?:true\b)/,/^(?:false\b)/,/^(?:Ren\b)/,/^(?:ren\b)/,/^(?:REN\b)/,/^(?:ρ)/,/^(?:OR\b)/,/^(?:or\b)/,/^(?:Or\b)/,/^(?:AND\b)/,/^(?:and\b)/,/^(?:And\b)/,/^(?:[a-zA-Z][a-zA-Z0-9.]*)/,/^(?:[0-9]+(\.[0-9]+)?\b)/,/^(?:\*)/,/^(?:\/)/,/^(?:-)/,/^(?:\+)/,/^(?:\^)/,/^(?:!)/,/^(?:%)/,/^(?:\()/,/^(?:\))/,/^(?:,)/,/^(?:\[)/,/^(?:\])/,/^(?:\|)/,/^(?:&)/,/^(?:<>)/,/^(?:<-)/,/^(?:<=)/,/^(?:>=)/,/^(?:>)/,/^(?:<)/,/^(?:=)/,/^(?:;)/,/^(?:$)/,/^(?:.)/],
+conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64],"inclusive":true}}
 });
 return lexer;
 })();
