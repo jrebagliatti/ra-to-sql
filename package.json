@@ -15,5 +15,20 @@
     "sqlite3": "^4.0.2",
     "webpack": "^4.16.5",
     "webpack-cli": "^3.1.0"
-  }
+  },
+  "description": "Really Simple, and quite inefficient, Relational Algebra parser and SQL converter",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jrebagliatti/ra-to-sql.git"
+  },
+  "keywords": ["relational algebra", "sql", "parser", "converter"],
+  "author": "Javier Rebagliatti <jrebagliatti@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jrebagliatti/ra-to-sql/issues"
+  },
+  "homepage": "https://github.com/jrebagliatti/ra-to-sql#readme"
 }
