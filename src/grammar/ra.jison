@@ -98,15 +98,29 @@
 ra_program
     : ra_sentences EOF
         { return $1 }
+    | ra_sentences sentence_separators EOF
+        { return $1 }
+    | sentence_separators ra_sentences sentence_separators EOF
+        { return $2 }
+    | sentence_separators ra_sentences EOF
+        { return $2 }
     ;
 
 ra_sentences
     : ra_sentence
         { $$ = new Array($1); }
-    | ra_sentences NEWLINE ra_sentence
+    | ra_sentences sentence_separators ra_sentence
         { $1.push($3); $$ = $1; }
-    | ra_sentences ';' ra_sentence
-        { $1.push($3); $$ = $1; }
+    ;
+
+sentence_separators
+    : sentence_separator
+    | sentence_separators sentence_separator
+    ;
+
+sentence_separator
+    : NEWLINE
+    | ';'
     ;
 
 ra_sentence 

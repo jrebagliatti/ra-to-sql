@@ -116,14 +116,14 @@ The following are the main components of the library:
 * [src/ra-to-sql.js](src/ra-to-sql.js) is the entry point of the library 
 
 Additionally, the following files are generated as part of the building process:
-* [src/ra.js](src/ra.js): Is the RA parser, which is built automatically using the [Jison parser generator](https://github.com/zaach/jison)
-* [dist/ra-to-sql.js](dist/ra-to-sql.js): Is the JavaScript library, which is bundled using the [Webpack bundler](https://github.com/webpack/webpack)
+* [src/ra.js](src/ra.js): Is the RA parser, which is built automatically using the [Jison parser generator](https://github.com/zaach/jison). Run ```npm run jison``` to generate it.
+* [dist/ra-to-sql.js](dist/ra-to-sql.js): Is the JavaScript library, which is bundled using the [Webpack bundler](https://github.com/webpack/webpack). Run ```npm run build``` to generate it.
 
 ## Running the tests
 
 Tests are defined in the ``test/test-definitions`` folder. Each Json file included in that folder becomes a test. File structure is self-explanatory. 
 
-Use the following command to run the test:
+Use the following command to run the tests:
 
 ```
 npm test

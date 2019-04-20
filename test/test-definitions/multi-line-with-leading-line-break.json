@@ -1,0 +1,20 @@
+{
+    "tables": [
+        {
+            "tableName": "Product",
+            "definitionFile": "Product.csv"
+        },
+        {
+            "tableName": "ProductColorAvailability",
+            "definitionFile": "ProductColorAvailability.csv"
+        },
+        {
+            "tableName": "Color",
+            "definitionFile": "Color.csv"
+        }
+    ],
+    "expression": "\nP <- Product\nC <- Color\nPCA <- ProductColorAvailability\nProj[ProductId](PCA) - Proj[ProductId]((Proj[ProductId,ColorId](P x C)-PCA))",
+    "expectedResults":[
+        { "ProductId": 2 }
+    ]
+}
