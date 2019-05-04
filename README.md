@@ -76,7 +76,7 @@ Sel[Number > 14 AND !(Number = 15 OR Number = 18)](Numbers)
 
 You can try it online [here](https://unpkg.com/ra-to-sql/dist/index.html).
 
-> Note: The SQL generated iw compatible with SQL Server and sqlite. 
+> Note: The SQL generated is compatible with SQL Server and sqlite. 
 
 ## Installation
 
@@ -139,7 +139,7 @@ npm test
 
 ## Contributing
 
-Any contribution is welcomed!. There are no guidelines for contributing, except from the common-sense.
+Any contribution is welcomed!. There are no guidelines for contributing, except for the common-sense.
 
 ## Versioning
 

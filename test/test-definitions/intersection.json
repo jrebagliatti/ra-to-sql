@@ -1,0 +1,12 @@
+{
+    "tables": [
+        {
+            "tableName": "Person",
+            "definitionFile": "Person.csv"
+        }
+    ],
+    "expression": "Proj[PersonName](Sel[PersonId>2](Person) INT Sel[PersonId<4](Person))",
+    "expectedResults":[
+        { "PersonName": "Sophie" }
+    ]
+}

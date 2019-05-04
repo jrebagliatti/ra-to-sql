@@ -21,7 +21,7 @@ function getUnion(sentence1, sentence2) {
 }
 
 function getIntersection(sentence1, sentence2) {
-    return `(SELECT DISTINCT * FROM ${sentence1} INTESECT SELECT DISTINCT * FROM ${sentence2}) AS ${getNewId("INTERSECT")}`;
+    return `(SELECT DISTINCT * FROM ${sentence1} INTERSECT SELECT DISTINCT * FROM ${sentence2}) AS ${getNewId("INTERSECT")}`;
 }
 
 function getSubtraction(sentence1, sentence2) {
