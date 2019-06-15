@@ -1,0 +1,20 @@
+{
+    "tables": [
+        {
+            "tableName": "Person2",
+            "definitionFile": "Intro.Person.csv"
+        },
+        {
+            "tableName": "Eats",
+            "definitionFile": "Intro.Eats.csv"
+        },
+        {
+            "tableName": "Serves",
+            "definitionFile": "Intro.Serves.csv"
+        }
+    ],
+    "expression": "A<-Proy[name](Sel[age>30](Person2));B(p1)<- Proy[pizza](A|X|Eats);C(p)<-B;D<-Sel[p<>p1](C X B);Proy[pizzeria](Serves) - Proy[pizzeria](Sel[pizza<>p AND pizza<>p1](Serves X D))",
+    "expectedResults":[
+        {"pizzeria": "Chicago Pizza"}
+    ]
+}

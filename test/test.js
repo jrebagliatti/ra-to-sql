@@ -19,7 +19,7 @@ describe('RA expressions', function() {
                     var table = tableDefinition.tableName;
                     console.log(`Processing table ${tableDefinition.definitionFile}`);
 
-                    var records = getDataFromCsv(table);
+                    var records = getDataFromCsv(tableDefinition.definitionFile);
 
                     // Header
                     var statement = `CREATE TABLE ${table} (${records.header.map(x=>`${x.columnName} ${x.dataType}`).join(',')})`;
@@ -55,7 +55,7 @@ describe('RA expressions', function() {
 });
 
 function getDataFromCsv(csvFileName){
-    var content = fs.readFileSync(`./test/table-definitions/${csvFileName}.csv`, 'UTF8');
+    var content = fs.readFileSync(`./test/table-definitions/${csvFileName}`, 'UTF8');
 
     var csvContent = csvParser(content);
 
