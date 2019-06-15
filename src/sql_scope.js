@@ -49,7 +49,7 @@ function getRename(table, alias, fieldList){
 }
 
 function getSingleTable(tableName) {
-    return `(SELECT DISTINCT * FROM ${tableName}) AS ${getNewId('ID')}`;
+    return `##${tableName}## AS ${getNewId('ID')}`;
 }
 
 module.exports = {
