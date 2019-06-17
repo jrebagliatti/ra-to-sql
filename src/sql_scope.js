@@ -17,15 +17,15 @@ function getBooleanOperation(op1, operation, op2) {
 }
 
 function getUnion(sentence1, sentence2) {
-    return `(SELECT DISTINCT * FROM ${sentence1} UNION SELECT DISTINCT * FROM ${sentence2}) AS ${getNewId("UNION")}`;
+    return `(${getTableFromSentence(sentence1)} UNION ${getTableFromSentence(sentence2)}) AS ${getNewId("UNION")}`;
 }
 
 function getIntersection(sentence1, sentence2) {
-    return `(SELECT DISTINCT * FROM ${sentence1} INTERSECT SELECT DISTINCT * FROM ${sentence2}) AS ${getNewId("INTERSECT")}`;
+    return `(${getTableFromSentence(sentence1)} INTERSECT ${getTableFromSentence(sentence2)}) AS ${getNewId("INTERSECT")}`;
 }
 
 function getSubtraction(sentence1, sentence2) {
-    return `(SELECT DISTINCT * FROM ${sentence1} EXCEPT SELECT DISTINCT * FROM ${sentence2}) AS ${getNewId("SUB")}`;
+    return `(${getTableFromSentence(sentence1)} EXCEPT ${getTableFromSentence(sentence2)}) AS ${getNewId("SUB")}`;
 }
 
 function getProduct(sentence1, sentence2) {
@@ -33,7 +33,7 @@ function getProduct(sentence1, sentence2) {
 }
 
 function getNaturalJoin(sentence1, sentence2) {
-    return `(SELECT DISTINCT * FROM ${sentence1} NATURAL JOIN ${sentence2}) AS ${getNewId("NAT")}`;
+    return `(${getTableFromSentence(sentence1)} NATURAL JOIN ${sentence2}) AS ${getNewId("NAT")}`;
 }
 
 function getSelection(table, alias, condition){
@@ -49,7 +49,11 @@ function getRename(table, alias, fieldList){
 }
 
 function getSingleTable(tableName) {
-    return `##${tableName}## AS ${getNewId('ID')}`;
+    return `##${tableName}##`;
+}
+
+function getTableFromSentence(sentence) {
+    return `SELECT DISTINCT * FROM ${sentence}`;
 }
 
 module.exports = {
