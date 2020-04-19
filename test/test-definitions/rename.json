@@ -9,5 +9,6 @@
     "expectedResults":[
         {"A": "F", "B": "Female"},
         {"A": "M", "B": "Male"}
-    ]
+    ],
+    "expectedExpression": "$$\\mathsf{A_{(A,B)} \\gets Gender}$$$$\\mathsf{A}$$"
 }

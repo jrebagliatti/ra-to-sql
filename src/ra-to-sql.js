@@ -1,13 +1,13 @@
 var parser = require('./ra').parser;
 
-parser.yy = require('./sql_scope');
-
 function getSql(ra) {
-    // TODO: Prepare input, by removing consecutive newlines
-    var result = parser.parse(ra);
+    parser.yy = require('./sql_scope');
 
-    for(i = 0; i < result.length; i++){
-        var element = result[i];
+    // TODO: Prepare input, by removing consecutive newlines
+    var parsedRa = parser.parse(ra);
+
+    for(i = 0; i < parsedRa.length; i++){
+        var element = parsedRa[i];
         console.log(`Processing sentence ${i} of type ${element.type}`);
 
         if (element.type == "identifier") {
@@ -20,8 +20,8 @@ function getSql(ra) {
                 newExpression = `(${fieldList} FROM ${element.value.expression})`;
             }
 
-            for(j = i + 1; j < result.length; j++){
-                var elementToReplace = result[j];
+            for(j = i + 1; j < parsedRa.length; j++){
+                var elementToReplace = parsedRa[j];
                 var valueToBeReplaced;
 
                 if (elementToReplace.type == "identifier") {
@@ -50,11 +50,42 @@ function getSql(ra) {
 
     var result = element.value.value || newExpression;
 
-    result = result.replace(new RegExp("(##)(\\S*)(##)", 'g'), "$2");
+    return `SELECT DISTINCT * FROM ${result.replace(new RegExp("(##)(\\S*)(##)", 'g'), "$2")}`;
+}
 
-    return `SELECT DISTINCT * FROM ${result}`;
+function getExpression(ra) {
+    parser.yy = require('./mathjax_scope');
+
+    // TODO: Prepare input, by removing consecutive newlines
+    var parsedRa = parser.parse(ra);
+
+    var result = "";
+
+    for(i = 0; i < parsedRa.length; i++){
+        var element = parsedRa[i];
+        console.log(`Processing sentence ${i} of type ${element.type}`);
+
+        var sentence = element.value.value;
+
+        if (element.type == "identifier") {
+            if (element.value.fields != null) {
+                sentence = `${element.value.id}_{(${element.value.fields.join(',')})} \\gets ${element.value.expression}`;
+            }
+            else {
+                sentence = `${element.value.id} \\gets ${element.value.expression}`;
+            }
+        }
+        else {
+
+        }
+
+        result += `$$\\mathsf{${sentence}}$$`
+    }
+
+    return result;
 }
 
 module.exports = {
-    getSql
+    getSql,
+    getExpression
 }

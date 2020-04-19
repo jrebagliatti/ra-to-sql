@@ -11,5 +11,6 @@
         {"Number": 4},
         {"Number": 19},
         {"Number": 20}
-    ]
+    ],
+    "expectedExpression": "$$\\mathsf{\\sigma_{(Number > 2 \\land Number < 5 \\lor Number >= 19)}(Number)}$$"
 }

@@ -15,5 +15,6 @@
         {"PersonName": "Max", "GenderDescription": "Male"},
         {"PersonName": "Sophie", "GenderDescription": "Female"},
         {"PersonName": "Mary", "GenderDescription": "Female"}
-    ]
+    ],
+    "expectedExpression": "$$\\mathsf{\\pi_{(PersonName,GenderDescription)}(\\sigma_{(GenderId = PersonGender)}(Person \\times Gender))}$$"
 }

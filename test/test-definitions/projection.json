@@ -9,5 +9,6 @@
     "expectedResults":[
         {"PersonGender": "M"},
         {"PersonGender": "F"}
-    ]
+    ],
+    "expectedExpression": "$$\\mathsf{\\pi_{(PersonGender)}(Person)}$$"
 }
