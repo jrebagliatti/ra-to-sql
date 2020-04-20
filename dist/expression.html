@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="ra-to-sql.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Relational Algebra expression helper</h2>
+  <form>
+    <div class="form-group">
+      <label for="ra">RA</label>
+      <textarea  class="form-control" id="ra" placeholder="Enter relational algebra" name="ra"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="expression">Expression:</label>
+      <p class="text-justify" id="expression"></p>
+    </div>
+  </form>
+</div>
+
+<script>
+    $("#ra").change(function(){
+        try{
+            var result = raToSql.getLatexExpression($('#ra').val().trim());
+
+            var expression = result.map(x => `\\[${x}\\]`).join('\n');
+        }
+        catch{
+            console.log('Invalid expression');
+        }
+        $('#expression').text(`${expression}`);
+        MathJax.typeset();
+    })
+</script>
+
+</body>
+</html>
