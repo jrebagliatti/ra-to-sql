@@ -54,9 +54,9 @@ describe('RA expression', function() {
                 db.close();        
             });
 
-            it("expression", function(){
-                if (testDefinition.expectedExpression) {
-                    assert.equal(sql.getExpression(testDefinition.expression), testDefinition.expectedExpression);
+            it("LaTeX expression", function(){
+                if (testDefinition.expectedLatexExpression) {
+                    assert.deepEqual(sql.getLatexExpression(testDefinition.expression), testDefinition.expectedLatexExpression);
                 }
                 else {
                     

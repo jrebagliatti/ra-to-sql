@@ -53,13 +53,13 @@ function getSql(ra) {
     return `SELECT DISTINCT * FROM ${result.replace(new RegExp("(##)(\\S*)(##)", 'g'), "$2")}`;
 }
 
-function getExpression(ra) {
+function getLatexExpression(ra) {
     parser.yy = require('./mathjax_scope');
 
     // TODO: Prepare input, by removing consecutive newlines
     var parsedRa = parser.parse(ra);
 
-    var result = "";
+    var result = [];
 
     for(i = 0; i < parsedRa.length; i++){
         var element = parsedRa[i];
@@ -79,7 +79,7 @@ function getExpression(ra) {
 
         }
 
-        result += `$$\\mathsf{${sentence}}$$`
+        result.push(sentence);
     }
 
     return result;
@@ -87,5 +87,5 @@ function getExpression(ra) {
 
 module.exports = {
     getSql,
-    getExpression
+    getLatexExpression
 }

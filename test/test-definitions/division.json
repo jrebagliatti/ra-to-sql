@@ -17,5 +17,10 @@
     "expectedResults":[
         { "ProductId": 2 }
     ],
-    "expectedExpression": "$$\\mathsf{P \\gets Product}$$$$\\mathsf{C \\gets Color}$$$$\\mathsf{PCA \\gets ProductColorAvailability}$$$$\\mathsf{\\pi_{(ProductId)}(PCA) - \\pi_{(ProductId)}(\\pi_{(ProductId,ColorId)}(P \\times C) - PCA)}$$"
+    "expectedLatexExpression": [
+        "P \\gets Product",
+        "C \\gets Color",
+        "PCA \\gets ProductColorAvailability",
+        "\\pi_{(ProductId)}(PCA) - \\pi_{(ProductId)}(\\pi_{(ProductId,ColorId)}(P \\times C) - PCA)"
+    ]
 }

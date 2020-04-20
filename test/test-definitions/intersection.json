@@ -9,5 +9,5 @@
     "expectedResults":[
         { "PersonName": "Sophie" }
     ],
-    "expectedExpression": "$$\\mathsf{\\pi_{(PersonName)}(\\sigma_{(PersonId > 2)}(Person) \\cap \\sigma_{(PersonId < 4)}(Person))}$$"
+    "expectedLatexExpression": ["\\pi_{(PersonName)}(\\sigma_{(PersonId > 2)}(Person) \\cap \\sigma_{(PersonId < 4)}(Person))"]
 }

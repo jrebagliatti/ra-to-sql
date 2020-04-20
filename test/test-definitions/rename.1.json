@@ -10,5 +10,5 @@
         {"A": "F", "B": "Female"},
         {"A": "M", "B": "Male"}
     ],
-    "expectedExpression": "$$\\mathsf{\\rho_{(A,B)}(Gender)}$$"
+    "expectedLatexExpression": ["\\rho_{(A,B)}(Gender)"]
 }

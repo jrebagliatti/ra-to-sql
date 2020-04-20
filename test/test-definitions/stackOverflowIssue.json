@@ -17,5 +17,11 @@
     "expectedResults":[
         {"pizzeria": "Chicago Pizza"}
     ],
-    "expectedExpression": "$$\\mathsf{A \\gets \\pi_{(name)}(\\sigma_{(age > 30)}(Person2))}$$$$\\mathsf{B_{(p1)} \\gets \\pi_{(pizza)}(A \\bowtie Eats)}$$$$\\mathsf{C_{(p)} \\gets B}$$$$\\mathsf{D \\gets \\sigma_{(p <> p1)}(C \\times B)}$$$$\\mathsf{\\pi_{(pizzeria)}(Serves) - \\pi_{(pizzeria)}(\\sigma_{(pizza <> p \\land pizza <> p1)}(Serves \\times D))}$$"
+    "expectedLatexExpression": [
+        "A \\gets \\pi_{(name)}(\\sigma_{(age > 30)}(Person2))",
+        "B_{(p1)} \\gets \\pi_{(pizza)}(A \\bowtie Eats)",
+        "C_{(p)} \\gets B",
+        "D \\gets \\sigma_{(p <> p1)}(C \\times B)",
+        "\\pi_{(pizzeria)}(Serves) - \\pi_{(pizzeria)}(\\sigma_{(pizza <> p \\land pizza <> p1)}(Serves \\times D))"
+    ]
 }

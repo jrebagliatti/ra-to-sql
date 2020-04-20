@@ -16,5 +16,5 @@
         {"PersonName": "Sophie", "GenderDescription": "Female"},
         {"PersonName": "Mary", "GenderDescription": "Female"}
     ],
-    "expectedExpression": "$$\\mathsf{\\pi_{(PersonName,GenderDescription)}(Person \\bowtie \\rho_{(PersonGender,GenderDescription)}(Gender))}$$"
+    "expectedLatexExpression": ["\\pi_{(PersonName,GenderDescription)}(Person \\bowtie \\rho_{(PersonGender,GenderDescription)}(Gender))"]
 }
