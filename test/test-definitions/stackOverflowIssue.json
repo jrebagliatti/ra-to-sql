@@ -16,5 +16,12 @@
     "expression": "A<-Proy[name](Sel[age>30](Person2));B(p1)<- Proy[pizza](A|X|Eats);C(p)<-B;D<-Sel[p<>p1](C X B);Proy[pizzeria](Serves) - Proy[pizzeria](Sel[pizza<>p AND pizza<>p1](Serves X D))",
     "expectedResults":[
         {"pizzeria": "Chicago Pizza"}
+    ],
+    "expectedLatexExpression": [
+        "A \\gets \\pi_{(name)}(\\sigma_{(age > 30)}(Person2))",
+        "B_{(p1)} \\gets \\pi_{(pizza)}(A \\bowtie Eats)",
+        "C_{(p)} \\gets B",
+        "D \\gets \\sigma_{(p <> p1)}(C \\times B)",
+        "\\pi_{(pizzeria)}(Serves) - \\pi_{(pizzeria)}(\\sigma_{(pizza <> p \\land pizza <> p1)}(Serves \\times D))"
     ]
 }

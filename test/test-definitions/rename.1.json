@@ -9,5 +9,6 @@
     "expectedResults":[
         {"A": "F", "B": "Female"},
         {"A": "M", "B": "Male"}
-    ]
+    ],
+    "expectedLatexExpression": ["\\rho_{(A,B)}(Gender)"]
 }
