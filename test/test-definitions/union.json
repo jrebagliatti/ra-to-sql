@@ -15,5 +15,6 @@
         { "PersonName": "Mary" },
         { "PersonName": "Max" },
         { "PersonName": "Sophie" }
-    ]
+    ],
+    "expectedLatexExpression": ["\\pi_{(PersonName)}(\\sigma_{(PersonGender = 'M')}(Person)) \\cup \\pi_{(PersonName)}(\\sigma_{(PersonGender = 'F')}(Person))"]
 }

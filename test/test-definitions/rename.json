@@ -9,5 +9,9 @@
     "expectedResults":[
         {"A": "F", "B": "Female"},
         {"A": "M", "B": "Male"}
+    ],
+    "expectedLatexExpression": [
+        "A_{(A,B)} \\gets Gender",
+        "A"
     ]
 }

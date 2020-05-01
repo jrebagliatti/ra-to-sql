@@ -16,5 +16,11 @@
     "expression": "P <- Product\nC <- Color\nPCA <- ProductColorAvailability\nProj[ProductId](PCA) - Proj[ProductId]((Proj[ProductId,ColorId](P x C)-PCA))",
     "expectedResults":[
         { "ProductId": 2 }
+    ],
+    "expectedLatexExpression": [
+        "P \\gets Product",
+        "C \\gets Color",
+        "PCA \\gets ProductColorAvailability",
+        "\\pi_{(ProductId)}(PCA) - \\pi_{(ProductId)}(\\pi_{(ProductId,ColorId)}(P \\times C) - PCA)"
     ]
 }

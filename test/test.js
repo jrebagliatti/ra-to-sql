@@ -5,51 +5,63 @@ var csvParser = require('csv-parse/lib/sync');
 var sqlite3 = require('sqlite3').verbose();
 
 
-describe('RA expressions', function() {
+describe('RA expression', function() {
     fs.readdirSync('./test/test-definitions/').forEach(file => {
-        it(file, function(done) {
+        describe(file, function(){
             var fileContent = fs.readFileSync(`./test/test-definitions/${file}`, 'UTF8');
             var testDefinition = JSON.parse(fileContent);
+
+            it("sql", function(done) {
+                
+                var db = new sqlite3.Database(':memory:');
+
+                db.serialize(function() {
+
+                    testDefinition.tables.forEach(tableDefinition => {
+                        var table = tableDefinition.tableName;
+                        console.log(`Processing table ${tableDefinition.definitionFile}`);
+
+                        var records = getDataFromCsv(tableDefinition.definitionFile);
+
+                        // Header
+                        var statement = `CREATE TABLE ${table} (${records.header.map(x=>`${x.columnName} ${x.dataType}`).join(',')})`;
+                        db.run(statement);
+
+                        statement = `INSERT INTO ${table} VALUES (${records.header.map(x=>'?').join(',')})`;
+
+                        var stmt = db.prepare(statement);
+                        for(i = 0; i < records.rows.length; i++){
+                            var row = records.rows[i];
+                            stmt.run(row);
+                        }    
+                
+                        if(stmt != null){
+                            stmt.finalize();
+                        }
+                    });
+                
+                    db.all(sql.getSql(testDefinition.expression), function(err, rows) {
+                        if(err) {
+                            throw err;
+                        }
+                        
+                        assert.deepEqual(rows, testDefinition.expectedResults);
+                        done();
+                    });
             
-            var db = new sqlite3.Database(':memory:');
-
-            db.serialize(function() {
-
-                testDefinition.tables.forEach(tableDefinition => {
-                    var table = tableDefinition.tableName;
-                    console.log(`Processing table ${tableDefinition.definitionFile}`);
-
-                    var records = getDataFromCsv(tableDefinition.definitionFile);
-
-                    // Header
-                    var statement = `CREATE TABLE ${table} (${records.header.map(x=>`${x.columnName} ${x.dataType}`).join(',')})`;
-                    db.run(statement);
-
-                    statement = `INSERT INTO ${table} VALUES (${records.header.map(x=>'?').join(',')})`;
-
-                    var stmt = db.prepare(statement);
-                    for(i = 0; i < records.rows.length; i++){
-                        var row = records.rows[i];
-                        stmt.run(row);
-                    }    
-            
-                    if(stmt != null){
-                        stmt.finalize();
-                    }
                 });
             
-                db.all(sql.getSql(testDefinition.expression), function(err, rows) {
-                    if(err) {
-                        throw err;
-                    }
-                    
-                    assert.deepEqual(rows, testDefinition.expectedResults);
-                    done();
-                });
-        
+                db.close();        
             });
-        
-            db.close();        
+
+            it("LaTeX expression", function(){
+                if (testDefinition.expectedLatexExpression) {
+                    assert.deepEqual(sql.getLatexExpression(testDefinition.expression), testDefinition.expectedLatexExpression);
+                }
+                else {
+                    
+                }
+            });    
         });
     });
 });
