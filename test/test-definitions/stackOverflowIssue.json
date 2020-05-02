@@ -18,10 +18,10 @@
         {"pizzeria": "Chicago Pizza"}
     ],
     "expectedLatexExpression": [
-        "A \\gets \\pi_{(name)}(\\sigma_{(age > 30)}(Person2))",
-        "B_{(p1)} \\gets \\pi_{(pizza)}(A \\bowtie Eats)",
+        "A \\gets \\LARGE\\pi\\normalsize_{(name)}(\\LARGE\\sigma\\normalsize_{(age\\,>\\,30)}(Person2))",
+        "B_{(p1)} \\gets \\LARGE\\pi\\normalsize_{(pizza)}(A \\bowtie Eats)",
         "C_{(p)} \\gets B",
-        "D \\gets \\sigma_{(p <> p1)}(C \\times B)",
-        "\\pi_{(pizzeria)}(Serves) - \\pi_{(pizzeria)}(\\sigma_{(pizza <> p \\land pizza <> p1)}(Serves \\times D))"
+        "D \\gets \\LARGE\\sigma\\normalsize_{(p\\,<>\\,p1)}(C \\times B)",
+        "\\LARGE\\pi\\normalsize_{(pizzeria)}(Serves) - \\LARGE\\pi\\normalsize_{(pizzeria)}(\\LARGE\\sigma\\normalsize_{(pizza\\,<>\\,p\\:\\land\\:pizza\\,<>\\,p1)}(Serves \\times D))"
     ]
 }

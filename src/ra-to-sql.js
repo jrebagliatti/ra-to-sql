@@ -8,10 +8,11 @@ function getSql(ra) {
 
     for(i = 0; i < parsedRa.length; i++){
         var element = parsedRa[i];
-        console.log(`Processing sentence ${i} of type ${element.type}`);
+        //console.debug(`Processing sentence ${i} of type ${element.type}`);
 
         if (element.type == "identifier") {
-            console.log(`Looking for identifier "${element.value.id}" in following sentences`);
+
+            //console.debug(`Looking for identifier "${element.value.id}" in following sentences`);
 
             var newExpression = `(${element.value.expression})`; 
 
@@ -31,7 +32,7 @@ function getSql(ra) {
                     valueToBeReplaced = elementToReplace.value.value;
                 }
 
-                console.log(`  Inspecting [${elementToReplace.type}] ${valueToBeReplaced}`);
+                //console.debug(`  Inspecting [${elementToReplace.type}] ${valueToBeReplaced}`);
                 valueToBeReplaced = valueToBeReplaced.replace(new RegExp("##" + element.value.id + "##", 'g'), newExpression);
 
                 if (elementToReplace.type == "identifier") {
@@ -43,7 +44,7 @@ function getSql(ra) {
             }
         }
         else {
-            console.log("Expression Found. Returning");
+            //console.debug("Expression Found. Returning");
             break;
         }
     }
@@ -63,7 +64,7 @@ function getLatexExpression(ra) {
 
     for(i = 0; i < parsedRa.length; i++){
         var element = parsedRa[i];
-        console.log(`Processing sentence ${i} of type ${element.type}`);
+        //console.debug(`Processing sentence ${i} of type ${element.type}`);
 
         var sentence = element.value.value;
 

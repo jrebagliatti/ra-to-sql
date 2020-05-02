@@ -16,5 +16,5 @@
         {"PersonName": "Sophie", "GenderDescription": "Female"},
         {"PersonName": "Mary", "GenderDescription": "Female"}
     ],
-    "expectedLatexExpression": ["\\pi_{(PersonName,GenderDescription)}(\\sigma_{(GenderId = PersonGender)}(Person \\times Gender))"]
+    "expectedLatexExpression": ["\\LARGE\\pi\\normalsize_{(PersonName,GenderDescription)}(\\LARGE\\sigma\\normalsize_{(GenderId\\,=\\,PersonGender)}(Person \\times Gender))"]
 }

@@ -12,5 +12,5 @@
         {"Number": 19},
         {"Number": 20}
     ],
-    "expectedLatexExpression": ["\\sigma_{(Number > 14 \\land !(Number = 15 \\lor Number = 18))}(Number)"]
+    "expectedLatexExpression": ["\\LARGE\\sigma\\normalsize_{(Number\\,>\\,14\\:\\land\\:!(Number\\,=\\,15\\:\\lor\\:Number\\,=\\,18))}(Number)"]
 }

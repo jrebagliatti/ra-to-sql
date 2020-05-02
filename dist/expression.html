@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Relational Algebra expression helper</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -9,11 +9,15 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script src="ra-to-sql.js"></script>
+  <style>
+    mjx-container {
+      text-align: left !important;
+    }
+  </style>
 </head>
 <body>
-
 <div class="container">
   <h2>Relational Algebra expression helper</h2>
   <form>
@@ -23,7 +27,7 @@
     </div>
     <div class="form-group">
       <label for="expression">Expression:</label>
-      <p class="text-justify" id="expression"></p>
+      <p class="text-justify input-lg" id="expression"></p>
     </div>
   </form>
 </div>
@@ -40,7 +44,7 @@
         }
         $('#expression').text(`${expression}`);
         MathJax.typeset();
-    })
+    });
 </script>
 
 </body>

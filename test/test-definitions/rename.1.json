@@ -10,5 +10,5 @@
         {"A": "F", "B": "Female"},
         {"A": "M", "B": "Male"}
     ],
-    "expectedLatexExpression": ["\\rho_{(A,B)}(Gender)"]
+    "expectedLatexExpression": ["\\LARGE\\rho\\normalsize_{(A,B)}(Gender)"]
 }

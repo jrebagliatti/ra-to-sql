@@ -21,6 +21,6 @@
         "P \\gets Product",
         "C \\gets Color",
         "PCA \\gets ProductColorAvailability",
-        "\\pi_{(ProductId)}(PCA) - \\pi_{(ProductId)}(\\pi_{(ProductId,ColorId)}(P \\times C) - PCA)"
+        "\\LARGE\\pi\\normalsize_{(ProductId)}(PCA) - \\LARGE\\pi\\normalsize_{(ProductId)}(\\LARGE\\pi\\normalsize_{(ProductId,ColorId)}(P \\times C) - PCA)"
     ]
 }

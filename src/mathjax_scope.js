@@ -11,11 +11,11 @@ function getNot(input) {
 function getBooleanExpression(op1, b_e, op2) {
     var parsedOperator = "\\l" + b_e.toLowerCase();
 
-    return `${op1} ${parsedOperator} ${op2}`;
+    return `${op1}\\:${parsedOperator}\\:${op2}`;
 }
 
 function getBooleanOperation(op1, operation, op2) {
-    return `${op1} ${operation} ${op2}`;
+    return `${op1}\\,${operation}\\,${op2}`;
 }
 
 function getUnion(sentence1, sentence2) {
@@ -39,7 +39,7 @@ function getNaturalJoin(sentence1, sentence2) {
 }
 
 function getSelection(table, alias, condition){
-    return `\\sigma_{(${condition})}(${table})`;
+    return `\\LARGE\\sigma\\normalsize_{(${condition})}(${table})`;
 }
 
 function getTheta(sentence1, sentence2, condition) {
@@ -47,11 +47,11 @@ function getTheta(sentence1, sentence2, condition) {
 }
 
 function getProjection(table, alias, fieldList){
-    return `\\pi_{(${fieldList})}(${table})`;
+    return `\\LARGE\\pi\\normalsize_{(${fieldList})}(${table})`;
 }
 
 function getRename(table, alias, fieldList){
-    return `\\rho_{(${fieldList.join(',')})}(${table})`;
+    return `\\LARGE\\rho\\normalsize_{(${fieldList.join(',')})}(${table})`;
 }
 
 function getSingleTable(tableName) {

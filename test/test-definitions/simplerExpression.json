@@ -1,0 +1,16 @@
+{
+    "tables": [
+        {
+            "tableName": "Color",
+            "definitionFile": "Color.csv"
+        }
+    ],
+    "expression": "Color",
+    "expectedResults":[
+        {"ColorId": "R", "ColorName": "Red"},
+        {"ColorId": "B", "ColorName": "Blue"},
+        {"ColorId": "O", "ColorName": "Orange"},
+        {"ColorId": "W", "ColorName": "White"}
+    ],
+    "expectedLatexExpression": ["Color"]
+}

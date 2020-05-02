@@ -10,5 +10,5 @@
         {"PersonGender": "M"},
         {"PersonGender": "F"}
     ],
-    "expectedLatexExpression": ["\\pi_{(PersonGender)}(Person)"]
+    "expectedLatexExpression": ["\\LARGE\\pi\\normalsize_{(PersonGender)}(Person)"]
 }
