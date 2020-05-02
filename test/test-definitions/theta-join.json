@@ -1,0 +1,20 @@
+{
+    "tables": [
+        {
+            "tableName": "Person",
+            "definitionFile": "Person.csv"
+        },
+        {
+            "tableName": "Gender",
+            "definitionFile": "Gender.csv"
+        }
+    ],
+    "expression": "Proj[PersonName,GenderDescription](Person |x(GenderId=PersonGender)| Gender)",
+    "expectedResults":[
+        {"PersonName": "John", "GenderDescription": "Male"},
+        {"PersonName": "Max", "GenderDescription": "Male"},
+        {"PersonName": "Sophie", "GenderDescription": "Female"},
+        {"PersonName": "Mary", "GenderDescription": "Female"}
+    ],
+    "expectedLatexExpression": ["\\LARGE\\pi\\normalsize_{(PersonName,GenderDescription)}(Person \\underset{GenderId\\,=\\,PersonGender}{\\bowtie} Gender)"]
+}

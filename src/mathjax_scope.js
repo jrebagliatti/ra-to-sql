@@ -42,6 +42,10 @@ function getSelection(table, alias, condition){
     return `\\sigma_{(${condition})}(${table})`;
 }
 
+function getTheta(sentence1, sentence2, condition) {
+    return `${getTableFromSentence(sentence1)} \\underset{${condition}}{\\bowtie} ${sentence2}`;
+}
+
 function getProjection(table, alias, fieldList){
     return `\\pi_{(${fieldList})}(${table})`;
 }
@@ -71,5 +75,6 @@ module.exports = {
     getIntersection,
     getSubtraction,
     getRename,
-    getNaturalJoin
+    getNaturalJoin,
+    getTheta
 }

@@ -36,6 +36,10 @@ function getNaturalJoin(sentence1, sentence2) {
     return `(${getTableFromSentence(sentence1)} NATURAL JOIN ${sentence2}) AS ${getNewId("NAT")}`;
 }
 
+function getTheta(sentence1, sentence2, condition) {
+    return `(${getTableFromSentence(sentence1)} JOIN ${sentence2} ON ${condition}) AS ${getNewId("NAT")}`;
+}
+
 function getSelection(table, alias, condition){
     return `(SELECT DISTINCT * FROM ${table} WHERE ${condition}) AS ${getNewId('SEL')}`;
 }
@@ -69,5 +73,6 @@ module.exports = {
     getIntersection,
     getSubtraction,
     getRename,
-    getNaturalJoin
+    getNaturalJoin,
+    getTheta
 }
