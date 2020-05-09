@@ -1,22 +1,24 @@
 # Really Simple (and quite inefficient) Relational Algebra parser and SQL converter
 
-Very simple Relational Algebra to SQL converter. 
+Very simple Relational Algebra to SQL converter. Designed for educational purposes only.
 
-Designed for educational purposes, it doesn't try to make any optimizations on the generated SQL sentences.
+The tool also provides a simple Relational Algebra to LaTeX mathematical expression.
 
 ## Usage
 
-ra-to-sql can be installed as a Node.js package or as a JavaScript library (see [Installation section](#installation) for more detailed information). The ra-to-sql.js library can be downloaded from [here](dist/ra-to-sql.js), or used from a CDN https://unpkg.com/ra-to-sql. 
+``ra-to-sql`` can be installed as a Node.js package or as a JavaScript library (see [Installation section](#installation) for more detailed information). The ``ra-to-sql.js`` library can be downloaded from [here](dist/ra-to-sql.js), or used from a CDN https://unpkg.com/ra-to-sql. 
 
 As a JavaScript library:
 ```javascript
 var sql = raToSql.getSQL(<<ra-expression>>);
+var latex = raToSql.getLatexExpression(<<ra-expression>>);
 ```
 
 As a Node.js app:
 ```javascript
 var raToSql = require('ra-to-sql');
 var sql = raToSql.getSQL(<<ra-expression>>);
+var latex = raToSql.getLatexExpression(<<ra-expression>>);
 ```
 
 Where ``<<ra-expression>>`` is any valid Relational Algebra expression.
@@ -38,6 +40,8 @@ Currently, the following operations are supported
 * Natural Join
   ``A |x| B``,
   ``A ⋈ B``
+* Theta Join
+  ``A |x(Condition)| B``
 * Union:
   ``A U B``,
   ``A ∪ B``
@@ -74,7 +78,9 @@ OldPeople <- Sel(Age>80)(Person); Person |X| City;
 Sel[Number > 14 AND !(Number = 15 OR Number = 18)](Numbers)
 ```
 
-You can try it online [here](https://unpkg.com/ra-to-sql/dist/index.html).
+You can try it online here: 
+* [SQL](https://unpkg.com/ra-to-sql/dist/index.html).
+* [LaTeX expression](https://unpkg.com/ra-to-sql/dist/expression.html).
 
 > Note: The SQL generated is compatible with SQL Server and sqlite. 
 
@@ -113,6 +119,7 @@ nmp install
 The following are the main components of the library:
 * [src/grammar/ra.jison](src/grammar/ra.jison) contains the definition of the grammar (tokens and BNF) in [Jison format](https://github.com/zaach/jison)
 * [src/sql_scope.js](src/sql_scope.js) contains the transformations for converting to SQL
+* [src/mathjax_scope.js](src/mathjax_scope.js) contains the transformations for converting to LaTeX
 * [src/ra-to-sql.js](src/ra-to-sql.js) is the entry point of the library 
 
 Additionally, the following files are generated as part of the building process:
@@ -139,7 +146,7 @@ npm test
 
 ## Contributing
 
-Any contribution is welcomed!. There are no guidelines for contributing, except for the common-sense.
+Any contribution is welcomed!. There are no guidelines for contributing, just common-sense.
 
 ## Versioning
 
