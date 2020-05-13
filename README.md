@@ -71,7 +71,7 @@ A x A x A
 ```
 
 ```
-OldPeople <- Sel(Age>80)(Person); Person |X| City;
+OldPeople <- Sel[Age>80](Person); Person |X| City;
 ```
 
 ```
